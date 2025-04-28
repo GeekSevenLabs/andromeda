@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Andromeda</title>
+    
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <base href="/"/>
+    
+    <ImportMap/>
+    
+    <link rel="icon" type="image/png" href="@Assets["favicon.png"]"/>
+    
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <link href="@Assets["_content/MudBlazor/MudBlazor.min.css"]" rel="stylesheet" />
+    <link href="@Assets["_content/Andromeda.Common.Server/tailwind.css"]" rel="stylesheet" />
+
+    <link rel="stylesheet" href="@Assets["app.css"]"/>
+    <link rel="stylesheet" href="@Assets["Andromeda.Presentation.Web.styles.css"]"/>
+    
+    <HeadOutlet @rendermode="InteractiveWebAssembly"/>
+</head>
+
+    <body>
+        <Routes @rendermode="InteractiveWebAssembly"/>
+        <script src="@Assets["_framework/blazor.web.js"]"></script>
+        <script src="@Assets["_content/MudBlazor/MudBlazor.min.js"]"></script>
+    </body>
+
+</html>

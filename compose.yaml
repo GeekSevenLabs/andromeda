@@ -1,0 +1,22 @@
+﻿services:
+  sql-server:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: andromeda-sql-server
+    restart: always
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "1q2w3e4r@#$"
+    ports:
+      - "1434:1433"
+    networks:
+      - andromeda-network
+    volumes:
+      - sql-server-data:/var/opt/mssql
+
+networks:
+  andromeda-network:
+    driver: bridge
+
+volumes:
+  sql-server-data:
+    driver: local   
