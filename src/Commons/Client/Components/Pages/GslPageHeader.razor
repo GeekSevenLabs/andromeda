@@ -1,0 +1,16 @@
+@* ReSharper disable once CheckNamespace *@
+@namespace Andromeda
+@inherits GslComponentBase
+
+<MudPaper Elevation="2">
+    <MudToolBar>
+        @if (!string.IsNullOrWhiteSpace(Page.BackHref))
+        {
+            <MudIconButton Href="@Page.BackHref" Icon="@Icons.Material.Outlined.ChevronLeft" Color="Color.Inherit" Class="tw:!mr-2"/>
+        }
+        <MudText>@Page.Title</MudText>
+        <MudSpacer></MudSpacer>
+
+        @ChildContent
+    </MudToolBar>
+</MudPaper>

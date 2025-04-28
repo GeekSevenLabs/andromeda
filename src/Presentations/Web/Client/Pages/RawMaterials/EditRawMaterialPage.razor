@@ -12,35 +12,36 @@
 
 <DeiEditForm OnValidSubmit="OnValidSubmitAsync" Model="_request" Validator="_validator">
 
-    <DeiPage Title="@Title" BackHref="@BackHref">
-        <Content>
+    <GslPage Title="@Title" BackHref="@BackHref">
+        <GslPageHeader/>
+        <GslPageSection>
             <div class="tw:grid tw:grid-cols-1 sm:tw:grid-cols-2 tw:gap-4">
-                <DeiTextField 
+                <DeiTextField
                     @bind-Value="@_request.Name"
-                    Label="Nome" Placeholder="Nome da matéria prima"  />
+                    Label="Nome" Placeholder="Nome da matéria prima"/>
 
                 <DeiTextField
                     @bind-Value="@_request.Brand"
-                    Label="Marca" Placeholder="Nome da marca da matéria prima"  />
+                    Label="Marca" Placeholder="Nome da marca da matéria prima"/>
 
-                <DeiTextField 
+                <DeiTextField
                     @bind-Value="@_request.Description" Class="tw:col-span-full"
                     Label="Descrição" Placeholder="Descrição da matéria prima" Lines="4"/>
-                
-                <DeiEnumSelectField 
+
+                <DeiEnumSelectField
                     TEnum="UnitOfMeasureType"
-                    @bind-Value="@_request.UnitOfMeasure" 
-                    Label="Unidade de Medida" WithShortName />
-                
-                <DeiNumericField 
+                    @bind-Value="@_request.UnitOfMeasure"
+                    Label="Unidade de Medida" WithShortName/>
+
+                <DeiNumericField
                     @bind-Value="@_request.CostPerUnit"
                     Label="Preço da unidade" Placeholder="Ex: 0,15"/>
             </div>
-        </Content>
-        <BottomAction>
+        </GslPageSection>
+        <GslPageCommandBar>
             <MudButton Variant="Variant.Filled" Color="Color.Primary" ButtonType="ButtonType.Submit">Salvar</MudButton>
-        </BottomAction>
-    </DeiPage>
+        </GslPageCommandBar>
+    </GslPage>
 
 </DeiEditForm>
 

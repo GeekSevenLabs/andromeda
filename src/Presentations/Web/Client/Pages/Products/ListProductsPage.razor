@@ -5,13 +5,13 @@
 @inject IProductViewService ViewService
 @inject IUiUtils UiUtils
 
-<DeiPage Title="Produtos" BackHref="@BackHref">
-    <Action>
+<GslPage Title="Produtos" BackHref="@BackHref">
+    <GslPageHeader>
         <MudTooltip Text="Novo produto">
             <MudIconButton Icon="@Icons.Material.Outlined.Add" Color="Color.Inherit" Href="/products/new"/>
         </MudTooltip>
-    </Action>
-    <Content>
+    </GslPageHeader>
+    <GslPageSection>
         <DeiLoader @ref="_loader" Load="LoadAsync" CanRetry PreserveState>
             @if (context.IsNotEmpty())
             {
@@ -54,8 +54,8 @@
                 <DeiNotFoundContent>Não há produtos cadastradas.</DeiNotFoundContent>
             }
         </DeiLoader>
-    </Content>
-</DeiPage>
+    </GslPageSection>
+</GslPage>
 
 @code
 {

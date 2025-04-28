@@ -5,13 +5,13 @@
 @inject IQuotationViewService ViewService
 @inject IUiUtils UiUtils
 
-<DeiPage Title="Orçamentos" BackHref="/">
-    <Action>
+<GslPage Title="Orçamentos" BackHref="/">
+    <GslPageHeader>
         <MudTooltip Text="Nova cotação">
             <MudIconButton Icon="@Icons.Material.Outlined.Add" Color="Color.Inherit" Href="/quotations/new"/>
         </MudTooltip>
-    </Action>
-    <Content>
+    </GslPageHeader>
+    <GslPageCommandBar>
         <DeiLoader @ref="_loader" Load="LoadAsync" CanRetry PreserveState>
             @if (context.IsNotEmpty())
             {
@@ -56,8 +56,8 @@
                 </MudAlert>
             }
         </DeiLoader>
-    </Content>
-</DeiPage>
+    </GslPageCommandBar>
+</GslPage>
 
 @code 
 {

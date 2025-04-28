@@ -7,13 +7,15 @@
 @inject ICustomerViewService ViewService
 @inject IUiUtils UiUtils
 
-<DeiPage Title="Clientes" BackHref="/">
-    <Action>
+<GslPage Title="Clientes" BackHref="/">
+    
+    <GslPageHeader>
         <MudTooltip Text="Novo cliente">
             <MudIconButton Icon="@Icons.Material.Outlined.Add" Color="Color.Inherit" Href="/customers/new"/>
         </MudTooltip>
-    </Action>
-    <Content>
+    </GslPageHeader>
+
+    <GslPageSection>
         <DeiLoader @ref="_loader" Load="LoadAsync" CanRetry PreserveState>
             @if (context.IsNotEmpty())
             {
@@ -52,8 +54,8 @@
                 <DeiNotFoundContent>Não há clientes cadastrados</DeiNotFoundContent>
             }
         </DeiLoader>
-    </Content>
-</DeiPage>
+    </GslPageSection>
+</GslPage>
 
 @code
 {

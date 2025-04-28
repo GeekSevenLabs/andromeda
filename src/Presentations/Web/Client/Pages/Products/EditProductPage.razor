@@ -11,8 +11,9 @@
 
 <DeiEditForm OnValidSubmit="OnValidSubmitAsync" Model="_request" Validator="_validator">
 
-    <DeiPage Title="@Title" BackHref="@BackHref">
-        <Content>
+    <GslPage Title="@Title" BackHref="@BackHref">
+        <GslPageHeader/>
+        <GslPageSection>
             <div class="tw:grid tw:grid-cols-1 tw:gap-4">
                 <DeiTextField
                     @bind-Value="@_request.Name"
@@ -21,15 +22,15 @@
                 <DeiTextField
                     @bind-Value="@_request.Description"
                     Label="Descrição" Placeholder="Descrição do produto" Lines="4"/>
-                
-                <DeiProductCompositionsField @bind-Value="@_request.Compositions" />
-                
+
+                <DeiProductCompositionsField @bind-Value="@_request.Compositions"/>
+
             </div>
-        </Content>
-        <BottomAction>
+        </GslPageSection>
+        <GslPageCommandBar>
             <MudButton Variant="Variant.Filled" Color="Color.Primary" ButtonType="ButtonType.Submit">Salvar</MudButton>
-        </BottomAction>
-    </DeiPage>
+        </GslPageCommandBar>
+    </GslPage>
 
 </DeiEditForm>
 

@@ -1,4 +1,5 @@
 @page "/quotations/new"
+
 @using Andromeda.Application.Shared.Quotations
 @using Andromeda.Application.Shared.Quotations.Create
 
@@ -8,25 +9,26 @@
 
 <DeiEditForm Model="_request" Validator="_validator" OnValidSubmit="OnValidSubmitAsync">
     
-    <DeiPage Title="Criar Orçamento" BackHref="@BackHref">
-        <Content>
+    <GslPage Title="Criar Orçamento" BackHref="@BackHref">
+        <GslPageHeader/>
+        <GslPageSection>
             <div class="tw:grid tw:grid-cols-1 tw:gap-4">
-                
+
                 <DeiTextField @bind-Value="@_request.Title" Label="Titulo"/>
 
                 <DeiTextField
                     @bind-Value="@_request.Description"
                     Label="Descrição" Placeholder="Descrição da matéria prima" Lines="4"/>
 
-                <DeiCustomerSelectorField @bind-Value="@_request.CustomerId" Label="Cliente" />
+                <DeiCustomerSelectorField @bind-Value="@_request.CustomerId" Label="Cliente"/>
             </div>
-        </Content>
-        <BottomAction>
+        </GslPageSection>
+        <GslPageCommandBar>
             <MudButton Variant="Variant.Filled" Color="Color.Primary" ButtonType="ButtonType.Submit">
                 Salvar
             </MudButton>
-        </BottomAction>
-    </DeiPage>
+        </GslPageCommandBar>
+    </GslPage>
     
 </DeiEditForm>
 

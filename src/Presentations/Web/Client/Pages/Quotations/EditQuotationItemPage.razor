@@ -11,32 +11,33 @@
 
 <DeiEditForm Model="_request" Validator="_validator" OnValidSubmit="OnValidSubmitAsync">
     
-    <DeiPage Title="@Title" BackHref="@BackHref">
-        <Content>
-            
+    <GslPage Title="@Title" BackHref="@BackHref">
+        <GslPageHeader/>
+        <GslPageSection>
+
             <div class="tw:grid tw:grid-cols-1 sm:tw:grid-cols-2 tw:gap-4">
 
                 <DeiTextField
                     @bind-Value="@_request.Description" Lines="4"
-                    Label="Descrição" Placeholder="Descrição"  />
-                
+                    Label="Descrição" Placeholder="Descrição"/>
+
                 <DeiProductSelectorField
                     @bind-Value="@_request.ProductId"
-                    Label="Produto" Placeholder="Selecione um produto" />
-                
+                    Label="Produto" Placeholder="Selecione um produto"/>
+
                 <DeiNumericField
                     @bind-Value="@_request.Quantity"
-                    Label="Quantidade" Placeholder="Ex: 10" />
-                
+                    Label="Quantidade" Placeholder="Ex: 10"/>
+
             </div>
-            
-        </Content>
-        <BottomAction>
+
+        </GslPageSection>
+        <GslPageCommandBar>
             <MudButton Variant="Variant.Filled" Color="Color.Primary" ButtonType="ButtonType.Submit">
                 Salvar
             </MudButton>
-        </BottomAction>
-    </DeiPage>
+        </GslPageCommandBar>
+    </GslPage>
     
 </DeiEditForm>
 

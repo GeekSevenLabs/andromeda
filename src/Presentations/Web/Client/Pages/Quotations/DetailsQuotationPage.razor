@@ -5,14 +5,12 @@
 
 @inject IQuotationViewService ViewService
 
-<DeiPage Title="Orçamento" BackHref="@BackHref">
-    <Action>
-
-    </Action>
-    <Content>
+<GslPage Title="Orçamento" BackHref="@BackHref">
+    <GslPageHeader/>
+    <GslPageSection>
         <DeiLoader Load="LoadAsync" CanRetry PreserveState Context="quotation">
             <div class="tw:grid tw:grid-cols-1 sm:tw:grid-cols-2 md:tw:grid-cols-3 tw:gap-4">
-
+                
                 <DeiDataDisplay Title="Titulo">
                     @quotation.Title
                 </DeiDataDisplay>
@@ -46,7 +44,6 @@
                     </MudButton>
                 </MudStack>
 
-
                 <MudTable Items="quotation.Items" Hover Elevation="0" Dense Class="tw:col-span-full">
                     <HeaderContent>
                         <MudTh>Produto</MudTh>
@@ -71,7 +68,7 @@
                                 <MudTooltip Text="@($"Remover: {item.ProductName}")">
                                     <MudIconButton
                                         Icon="@Icons.Material.Outlined.Delete"
-                                        Color="Color.Error" />
+                                        Color="Color.Error"/>
                                 </MudTooltip>
                             </MudStack>
                         </MudTd>
@@ -82,8 +79,8 @@
                 </MudTable>
             </div>
         </DeiLoader>
-    </Content>
-</DeiPage>
+    </GslPageSection>
+</GslPage>
 
 @code
 {

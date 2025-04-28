@@ -190,6 +190,9 @@
   .tw\:mx-auto {
     margin-inline: auto;
   }
+  .tw\:\!mr-2 {
+    margin-right: calc(var(--tw-spacing) * 2) !important;
+  }
   .tw\:line-clamp-1 {
     overflow: hidden;
     display: -webkit-box;
@@ -226,14 +229,62 @@
   .tw\:flex-col {
     flex-direction: column;
   }
+  .tw\:flex-row {
+    flex-direction: row;
+  }
+  .tw\:items-center {
+    align-items: center;
+  }
+  .tw\:items-end {
+    align-items: flex-end;
+  }
+  .tw\:items-start {
+    align-items: flex-start;
+  }
+  .tw\:items-stretch {
+    align-items: stretch;
+  }
+  .tw\:justify-between {
+    justify-content: space-between;
+  }
+  .tw\:justify-center {
+    justify-content: center;
+  }
+  .tw\:justify-end {
+    justify-content: flex-end;
+  }
+  .tw\:justify-start {
+    justify-content: flex-start;
+  }
+  .tw\:justify-stretch {
+    justify-content: stretch;
+  }
+  .tw\:gap-0 {
+    gap: calc(var(--tw-spacing) * 0);
+  }
+  .tw\:gap-2 {
+    gap: calc(var(--tw-spacing) * 2);
+  }
   .tw\:gap-4 {
     gap: calc(var(--tw-spacing) * 4);
   }
   .tw\:gap-6 {
     gap: calc(var(--tw-spacing) * 6);
   }
+  .tw\:gap-8 {
+    gap: calc(var(--tw-spacing) * 8);
+  }
+  .tw\:\!px-6 {
+    padding-inline: calc(var(--tw-spacing) * 6) !important;
+  }
   .tw\:px-4 {
     padding-inline: calc(var(--tw-spacing) * 4);
+  }
+  .tw\:\!py-4 {
+    padding-block: calc(var(--tw-spacing) * 4) !important;
+  }
+  .tw\:\!py-6 {
+    padding-block: calc(var(--tw-spacing) * 6) !important;
   }
   .tw\:py-6 {
     padding-block: calc(var(--tw-spacing) * 6);

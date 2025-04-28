@@ -11,26 +11,33 @@
 
 <DeiEditForm OnValidSubmit="OnValidSubmitAsync" Model="_request" Validator="_validator">
 
-    <DeiPage Title="@Title" BackHref="@BackHref">
-        <Content>
+    <GslPage Title="@Title" BackHref="@BackHref">
+        
+        <GslPageHeader/>
+        
+        <GslPageSection>
             <div class="tw:grid tw:grid-cols-1 sm:tw:grid-cols-2 tw:gap-4">
-                <DeiTextField 
+                <DeiTextField
                     @bind-Value="@_request.Name"
-                    Label="Nome" Placeholder="Nome do Cliente"  />
+                    Label="Nome" Placeholder="Nome do Cliente"/>
 
                 <DeiTextField
                     @bind-Value="@_request.Phone"
-                    Label="Celular" Placeholder="Celular"  />
+                    Label="Celular" Placeholder="Celular"/>
 
                 <DeiTextField
                     @bind-Value="@_request.Email"
-                    Label="E-mail" Placeholder="E-mail"  />
+                    Label="E-mail" Placeholder="E-mail"/>
             </div>
-        </Content>
-        <BottomAction>
-            <MudButton Variant="Variant.Filled" Color="Color.Primary" ButtonType="ButtonType.Submit">Salvar</MudButton>
-        </BottomAction>
-    </DeiPage>
+        </GslPageSection>
+        
+        
+        <GslPageCommandBar>
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" ButtonType="ButtonType.Submit">
+                Salvar
+            </MudButton>
+        </GslPageCommandBar>
+    </GslPage>
 
 </DeiEditForm>
 
@@ -51,7 +58,7 @@
             var customer = await ViewService.GetAsync(new GetCustomerRequest { Id = Id.Value })
                 .Use(UiUtils)
                 .ShowError();
-            
+
             _request.CopyFrom(customer);
         }
     }
