@@ -27,11 +27,17 @@ public class ProblemDetailsExceptionMessageHandler(NavigationManager navigationM
             HttpStatusCode.BadRequest => "Operação inválida",
             HttpStatusCode.Forbidden => "Sem permissão para realizar esta operação",
             HttpStatusCode.NotFound => "A operação solicitada não existe",
+            HttpStatusCode.InternalServerError => "Ocorreu um erro interno no servidor",
+            HttpStatusCode.ServiceUnavailable => "Serviço temporariamente indisponível",
+            HttpStatusCode.GatewayTimeout => "Serviço temporariamente indisponível",
+            HttpStatusCode.TooManyRequests => "Limite de requisições atingido",
+            HttpStatusCode.RequestTimeout => "O tempo de espera da requisição expirou",
+            HttpStatusCode.MethodNotAllowed => "Requisição não permitida",
             _ => "Ocorreu um erro inesperado"
         };
         
         var detail = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken);
-        detail = string.IsNullOrEmpty(detail) ? "Nehum detalhe adicional sobre o erro." : detail;
+        detail = string.IsNullOrEmpty(detail) ? "Nenhum detalhe adicional sobre o erro." : detail;
         
         // Se chamou uma API sem ter autorização, redireciona para a tela de login
         if (httpResponseMessage.StatusCode == HttpStatusCode.Unauthorized)

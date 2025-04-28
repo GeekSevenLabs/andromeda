@@ -15,7 +15,7 @@ internal class RawMaterialConfiguration : IEntityTypeConfiguration<RawMaterial>
         
         builder.Property(rawMaterial => rawMaterial.Brand).HasMaxLength(100).IsRequired();
         builder.Property(rawMaterial => rawMaterial.CostPerUnit).IsRequired().HasPrecision(18, 2);
-        builder.Property(rawMaterial => rawMaterial.Description).HasMaxLength(500).IsRequired();
+        builder.Property(rawMaterial => rawMaterial.Description).HasMaxLength(500).IsRequired(false);
         builder.Property(rawMaterial => rawMaterial.Name).HasMaxLength(100).IsRequired();
         builder.Property(rawMaterial => rawMaterial.UnitOfMeasure).IsRequired();
     }

@@ -3,7 +3,6 @@
 @using Andromeda.Application.Shared.Quotations.List
 
 @inject IQuotationViewService ViewService
-@inject IUiUtils UiUtils
 
 <GslPage Title="Orçamentos" BackHref="/">
     <GslPageHeader>
@@ -11,7 +10,7 @@
             <MudIconButton Icon="@Icons.Material.Outlined.Add" Color="Color.Inherit" Href="/quotations/new"/>
         </MudTooltip>
     </GslPageHeader>
-    <GslPageCommandBar>
+    <GslPageSection>
         <DeiLoader @ref="_loader" Load="LoadAsync" CanRetry PreserveState>
             @if (context.IsNotEmpty())
             {
@@ -56,7 +55,7 @@
                 </MudAlert>
             }
         </DeiLoader>
-    </GslPageCommandBar>
+    </GslPageSection>
 </GslPage>
 
 @code 

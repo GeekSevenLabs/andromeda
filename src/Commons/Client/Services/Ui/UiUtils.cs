@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Components;
-using MudBlazor;
-
-namespace Andromeda.Services.Ui;
+﻿namespace Andromeda.Services.Ui;
 
 public class UiUtils(IDialogService dialogService, ISnackbar snackbar) : IUiUtils
 {

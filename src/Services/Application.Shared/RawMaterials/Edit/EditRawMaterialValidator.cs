@@ -15,8 +15,6 @@ public class EditRawMaterialValidator : AbstractValidator<EditRawMaterialRequest
             .MaximumLength(100);
         
         RuleFor(request => request.Description)
-            .NotEmpty()
-            .MinimumLength(10)
             .MaximumLength(500);
 
         RuleFor(request => request.UnitOfMeasure)

@@ -1,10 +1,8 @@
 @namespace Andromeda
 
-@using Andromeda.Services.Ui
-
 @inject IUiUtils Ui;
 
-<MudOverlay Visible="Ui.IsBusy" DarkBackground ZIndex="1400">
+<MudOverlay Visible="Ui.IsBusy" DarkBackground ZIndex="10">
     <MudCard Outlined>
         <MudCardContent>
             <MudStack AlignItems="AlignItems.Center">
@@ -19,6 +17,12 @@
 {
     protected override void OnInitialized()
     {
-        Ui.OnBusyChanged += StateHasChanged;
+        Ui.OnBusyChanged += ChangeBusyState;
+    }
+    
+    private void ChangeBusyState()
+    {
+        Console.WriteLine("ChangeBusyState: " + Ui.IsBusy);
+        StateHasChanged();
     }
 }
