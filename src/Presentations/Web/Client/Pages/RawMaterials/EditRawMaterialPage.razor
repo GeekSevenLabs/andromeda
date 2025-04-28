@@ -33,9 +33,9 @@
                     @bind-Value="@_request.UnitOfMeasure"
                     Label="Unidade de Medida" WithShortName/>
 
-                <DeiNumericField
-                    @bind-Value="@_request.CostPerUnit"
-                    Label="Preço da unidade" Placeholder="Ex: 0,15"/>
+                <GslNumericField
+                    @bind-Value="@_request.CostPerUnit" Currency
+                    Label="Preço da unidade" Placeholder="Ex: 0,15" Min="0M" Max="1000000M" Step="0.2M" />
             </div>
         </GslPageSection>
         <GslPageCommandBar>
