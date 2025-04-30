@@ -4,7 +4,7 @@
 @using Andromeda.Application.Shared.Products
 
 <DeiEditForm Model="_model" Validator="_validator" OnValidSubmit="Submit" >
-    <MudDialog Class="tw:!min-w-[600px]">
+    <MudDialog Class="tw:!min-w-[200px] tw:sm:!min-w-[300px] tw:md:!min-w-[600px]">
         <TitleContent>
             @(Composition.IsNotNull() ? "Editar composição" : "Criar composição")
         </TitleContent>
