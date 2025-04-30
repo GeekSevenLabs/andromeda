@@ -11,11 +11,12 @@ public class RemoveRawMaterialHandler(
     public async Task HandleAsync(RemoveRawMaterialRequest request, CancellationToken cancellationToken = default)
     {
         var rawMaterial = await repository.GetAsync(request.Id);
+        
         Throw.Http.NotFound.When.Null(rawMaterial, "Matéria prima não encontrada.");
+        Throw.When.True(rawMaterial.IsDeleted, "Matéria prima já excluída.");
         
-        //TODO: Verificar se a matéria prima está sendo utilizada em algum produto.
+       rawMaterial.Delete();
         
-        repository.Remove(rawMaterial);
         await unitOfWork.SaveChangesAsync(cancellationToken);
     }
 }

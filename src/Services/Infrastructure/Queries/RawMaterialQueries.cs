@@ -21,8 +21,10 @@ internal class RawMaterialQueries(AndromedaDbContext db) : IRawMaterialQueries
         {
             query = query.Where(rm => rm.Name.Contains(term) || rm.Brand.Contains(term));
         }
-        
-        return await query.Select(rm => new ListRawMaterialsResponseItem
+
+        return await query
+            .Where(raw => raw.IsDeleted == false)
+            .Select(rm => new ListRawMaterialsResponseItem
             {
                 Id = rm.Id,
                 Name = rm.Name,
@@ -39,9 +41,10 @@ internal class RawMaterialQueries(AndromedaDbContext db) : IRawMaterialQueries
         return db.RawMaterials
             .AsNoTracking()
             .Where(rm => rm.Id == id)
+            .Where(raw => raw.IsDeleted == false)
             .Select(rm => new GetRawMaterialResponse
             {
-                Id = rm.Id, 
+                Id = rm.Id,
                 Name = rm.Name,
                 Brand = rm.Brand,
                 Description = rm.Description,

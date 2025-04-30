@@ -34,6 +34,8 @@ internal class QuotationQueries(AndromedaDbContext db) : IQuotationQueries
         var query = from quotation in db.Quotations
             join customer in db.Customers on quotation.CustomerId equals customer.Id
             where quotation.Id == id
+            where quotation.IsDeleted == false
+            where customer.IsDeleted == false
             select new
             {
                 quotation.Id,
@@ -78,7 +80,7 @@ internal class QuotationQueries(AndromedaDbContext db) : IQuotationQueries
             CustomerName = result.CustomerName,
             CustomerEmail = result.CustomerEmail,
             CustomerPhone = result.CustomerPhone,
-            Items = result.Items.Select(item => new GetQuotationResponseItem()
+            Items = result.Items.Select(item => new GetQuotationResponseItem
             {
                 Id = item.Id,
                 ProductName = productsDic[item.ProductId].Name,
@@ -95,6 +97,7 @@ internal class QuotationQueries(AndromedaDbContext db) : IQuotationQueries
     {
         var query = from item in db.QuotationItems
             where item.Id == id
+            where item.IsDeleted == false
             select new GetQuotationItemResponse
             {
                 Id = item.QuotationId,

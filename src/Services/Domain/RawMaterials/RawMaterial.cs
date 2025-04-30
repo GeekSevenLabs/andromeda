@@ -30,4 +30,6 @@ public class RawMaterial : Entity, IAggregateRoot
         UnitOfMeasure = unitOfMeasure;
         CostPerUnit = costPerUnit;
     }
+    
+    public void Delete() => IsDeleted = true;
 }

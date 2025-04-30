@@ -13,6 +13,7 @@ internal class CustomerQueries(AndromedaDbContext db) : ICustomerQueries
             .Customers
             .AsNoTracking()
             .Where(c => c.Id == id)
+            .Where(customer => customer.IsDeleted == false)
             .Select(c => new GetCustomerResponse
             {
                 Id = c.Id,
@@ -34,7 +35,9 @@ internal class CustomerQueries(AndromedaDbContext db) : ICustomerQueries
             query = query.Where(c => c.Name.Contains(term));
         }
 
-        return await query.Select(c => new ListCustomersResponseItem
+        return await query
+            .Where(customer => customer.IsDeleted == false)
+            .Select(c => new ListCustomersResponseItem
             {
                 Id = c.Id,
                 Name = c.Name,

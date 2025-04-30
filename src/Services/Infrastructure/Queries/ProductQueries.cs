@@ -20,6 +20,7 @@ internal class ProductQueries(AndromedaDbContext db) : IProductQueries
         }
 
         return await query
+            .Where(product => product.IsDeleted == false)
             .Select(p => new ListProductsResponseItem
             {
                 Id = p.Id,
@@ -35,6 +36,7 @@ internal class ProductQueries(AndromedaDbContext db) : IProductQueries
         return db.Products
             .AsNoTracking()
             .Where(p => p.Id == productId)
+            .Where(product => product.IsDeleted == false)
             .Select(p => new GetProductResponse
             {
                 Id = p.Id,
