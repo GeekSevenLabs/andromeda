@@ -1,6 +1,4 @@
 using Andromeda.Application.RawMaterials;
-using Andromeda.Application.RawMaterials.Get;
-using Andromeda.Application.RawMaterials.List;
 using Andromeda.Application.Shared.RawMaterials.Get;
 using Andromeda.Application.Shared.RawMaterials.List;
 using Andromeda.Domain.RawMaterials;
@@ -41,7 +39,6 @@ internal class RawMaterialQueries(AndromedaDbContext db) : IRawMaterialQueries
         return db.RawMaterials
             .AsNoTracking()
             .Where(rm => rm.Id == id)
-            .Where(raw => raw.IsDeleted == false)
             .Select(rm => new GetRawMaterialResponse
             {
                 Id = rm.Id,
@@ -49,7 +46,8 @@ internal class RawMaterialQueries(AndromedaDbContext db) : IRawMaterialQueries
                 Brand = rm.Brand,
                 Description = rm.Description,
                 UnitOfMeasure = rm.UnitOfMeasure,
-                CostPerUnit = rm.CostPerUnit
+                CostPerUnit = rm.CostPerUnit,
+                IsDeleted = rm.IsDeleted
             })
             .FirstOrDefaultAsync();
     }

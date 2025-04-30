@@ -1,5 +1,4 @@
 using Andromeda.Domain.Products;
-using Andromeda.Domain.RawMaterials;
 
 namespace Andromeda.Infrastructure.Configurations;
 
@@ -30,7 +29,7 @@ internal class ProductCompositionConfiguration : IEntityTypeConfiguration<Produc
             .HasForeignKey(composition => composition.ProductId);
         
         builder
-            .HasOne<RawMaterial>()
+            .HasOne(composition => composition.RawMaterial)
             .WithMany()
             .HasForeignKey(composition => composition.RawMaterialId)
             .OnDelete(DeleteBehavior.Restrict);

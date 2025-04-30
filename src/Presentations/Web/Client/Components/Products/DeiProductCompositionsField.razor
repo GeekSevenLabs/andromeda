@@ -5,6 +5,7 @@
 @using Andromeda.Application.Shared.Products
 
 @inject IDialogService DialogService
+@inject ISnackbar Snackbar
 
 <MudStack>
     <MudStack Row Justify="Justify.SpaceBetween" Spacing="4" Wrap="Wrap.Wrap" AlignItems="AlignItems.Center">
@@ -80,7 +81,7 @@
         
         var parameters = new DialogParameters<DeiProductCompositionDialog>
         {
-            { d => d.Composition, composition }
+            { dialog => dialog.Composition, composition }
         };
         
         var dialog = await DialogService.ShowAsync<DeiProductCompositionDialog>("Editar composição", parameters, options);
@@ -90,7 +91,6 @@
         {
             Value[Value.IndexOf(composition)] = editedComposition;
             await ValueChanged.InvokeAsync(Value);
-            NotifyFieldChanged();
         }
     }
 

@@ -225,6 +225,9 @@
   .tw\:max-w-screen-xl {
     max-width: var(--tw-breakpoint-xl);
   }
+  .tw\:\!min-w-\[600px\] {
+    min-width: 600px !important;
+  }
   .tw\:grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }

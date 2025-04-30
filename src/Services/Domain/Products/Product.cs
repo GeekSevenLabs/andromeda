@@ -25,14 +25,15 @@ public class Product : Entity, IAggregateRoot
         Description = description;
     }
 
-    public void ChangeComposition(Guid rawMaterialId, string description, int quantity)
+    public void ChangeComposition(Guid? compositionId, Guid rawMaterialId, string description, int quantity)
     {
-        var composition = _compositions.FirstOrDefault(c => c.RawMaterialId == rawMaterialId);
+        var composition = _compositions.FirstOrDefault(composition => composition.Id == compositionId);
         
         if (composition is not null)
         {
-            composition.ChangeDescription(description);
+            composition.ChangeRawMaterial(rawMaterialId);
             composition.ChangeQuantity(quantity);
+            composition.ChangeDescription(description);
             return;
         }
         

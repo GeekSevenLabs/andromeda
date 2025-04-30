@@ -11,7 +11,7 @@
     <MudStack Row AlignItems="AlignItems.Center">
         <MudIcon Icon="@Icons.Material.Outlined.Grain" />
         <MudDivider Vertical />
-        <MudStack Spacing="1">
+        <MudStack Spacing="1" AlignItems="AlignItems.Start">
             
             @if (_rawMaterial is null)
             {
@@ -26,6 +26,12 @@
                     <span>@Composition.Quantity @_rawMaterial.UnitOfMeasure.ToEnumOption().CombinedName</span>
                 </MudText>
                 <MudText Typo="Typo.caption" Class="tw:opacity-75">@Composition.Description</MudText>
+                if (Composition.RawMaterialIsDeleted || _rawMaterial.IsDeleted)
+                {
+                    <MudText Color="Color.Error" Typo="Typo.caption" Class="tw:line-clamp-1">
+                        * Matéria prima excluída, deve ser removida da composição!
+                    </MudText>
+                }
             }
         </MudStack>
     </MudStack>
@@ -38,19 +44,20 @@
 @code 
 {
     private GetRawMaterialResponse? _rawMaterial;
-    
-    [Parameter, EditorRequired]
-    public required ProductCompositionModel Composition { get; set; }
-    
+
+    [Parameter, EditorRequired] public required ProductCompositionModel Composition { get; set; }
+
     [Parameter, EditorRequired] public required EventCallback<ProductCompositionModel> OnEdit { get; set; }
     [Parameter, EditorRequired] public required EventCallback<ProductCompositionModel> OnRemove { get; set; }
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     {
+        if (_rawMaterial?.Id == Composition.RawMaterialId) return;
+        
         _rawMaterial = await ViewService
             .GetAsync(new GetRawMaterialRequest { Id = Composition.RawMaterialId.GetValueOrDefault() });
     }
-    
+
     private async Task EditCompositionAsync() => await OnEdit.InvokeAsync(Composition);
     private async Task RemoveCompositionAsync() => await OnRemove.InvokeAsync(Composition);
 }

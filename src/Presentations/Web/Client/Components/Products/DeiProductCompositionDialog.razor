@@ -3,19 +3,13 @@
 
 @using Andromeda.Application.Shared.Products
 
-<DeiEditForm Model="_model" Validator="_validator" OnValidSubmit="Submit" FocusOnRenderSelector="textarea">
-    <MudDialog Class="!tw:min-w-[600px]">
+<DeiEditForm Model="_model" Validator="_validator" OnValidSubmit="Submit" >
+    <MudDialog Class="tw:!min-w-[600px]">
         <TitleContent>
             @(Composition.IsNotNull() ? "Editar composição" : "Criar composição")
         </TitleContent>
         <DialogContent>
             <MudStack Spacing="4">
-
-                <DeiTextField
-                    @bind-Value="@_model.Description" Class="tw:col-span-full" AutoFocus
-                    Label="Descrição" Placeholder="Descrição da matéria prima" Lines="4"/>
-
-                <MudDivider/>
                 
                 <DeiRawMaterialSelectorField
                     @bind-Value="@_model.RawMaterialId"
@@ -24,7 +18,13 @@
                 <GslNumericField
                     @bind-Value="@_model.Quantity"
                     Label="Quantidade" Placeholder="Ex: 3"/>
-
+                
+                <MudDivider/>
+                
+                <DeiTextField
+                    @bind-Value="@_model.Description" Class="tw:col-span-full" AutoFocus
+                    Label="Descrição" Placeholder="Descrição da matéria prima" Lines="4"/>
+                
             </MudStack>
         </DialogContent>
         <DialogActions>
@@ -52,6 +52,7 @@
         if (!firstRender || Composition is null) return;
         
         _model.CopyFrom(Composition);
+        _model.ResetRawMaterialWhenDeleted();
         StateHasChanged();
     }
 

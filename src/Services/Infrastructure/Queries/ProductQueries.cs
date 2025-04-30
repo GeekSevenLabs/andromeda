@@ -36,18 +36,18 @@ internal class ProductQueries(AndromedaDbContext db) : IProductQueries
         return db.Products
             .AsNoTracking()
             .Where(p => p.Id == productId)
-            .Where(product => product.IsDeleted == false)
             .Select(p => new GetProductResponse
             {
                 Id = p.Id,
                 Name = p.Name,
                 Description = p.Description,
-                Compositions = p.Compositions.Select(c => new ProductCompositionModel()
+                Compositions = p.Compositions.Select(c => new ProductCompositionModel
                 {
                     Id = c.Id,
                     Description = c.Description,
                     Quantity = c.Quantity,
-                    RawMaterialId = c.RawMaterialId
+                    RawMaterialId = c.RawMaterialId,
+                    RawMaterialIsDeleted = c.RawMaterial.IsDeleted
                 }).ToArray()
             })
             .FirstOrDefaultAsync();

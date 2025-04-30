@@ -1,3 +1,5 @@
+using Andromeda.Domain.RawMaterials;
+
 namespace Andromeda.Domain.Products;
 
 public class ProductComposition : Entity
@@ -19,7 +21,14 @@ public class ProductComposition : Entity
     
     public string Description { get; private set; }
     public int Quantity { get; private set; }
+
+    #region Navigations
+    
+    public RawMaterial RawMaterial { get; private set; } = null!;
+
+    #endregion
     
     public void ChangeDescription(string description) => Description = description;
     public void ChangeQuantity(int quantity) => Quantity = quantity;
+    public void ChangeRawMaterial(Guid rawMaterialId) => RawMaterialId = rawMaterialId;
 }

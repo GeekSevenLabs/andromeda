@@ -1,6 +1,4 @@
 using System.Linq.Expressions;
-using Microsoft.AspNetCore.Components;
-using MudBlazor;
 
 // ReSharper disable once CheckNamespace
 namespace Andromeda;
@@ -10,7 +8,7 @@ public abstract partial class DeiSelectorAbstractField<TValue> where TValue : st
     private readonly Dictionary<TValue, ChoiceOption<TValue>> _options = [];
         
         private string _currentTerm = "";
-        private MudAutocomplete<TValue?> _autocomplete = default!;
+        private MudAutocomplete<TValue?> _autocomplete = null!;
         
         private string GetHelpText(string label) => HelpText ?? $"Digite para pesquisar itens para \"{label}\"";   
         
@@ -51,7 +49,7 @@ public abstract partial class DeiSelectorAbstractField<TValue> where TValue : st
 
         protected override async Task OnParametersSetAsync()
         {
-            if (!Value.Equals(default) && !_options.ContainsKey(Value.Value))
+            if (!Value.Equals(null) && !_options.ContainsKey(Value.Value))
             {
                 try
                 {

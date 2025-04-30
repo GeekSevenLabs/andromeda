@@ -8,6 +8,7 @@ public class ProductCompositionModel
     public int? Quantity { get; set; }
     
     public Guid? RawMaterialId { get; set; }
+    public bool RawMaterialIsDeleted { get; set; }
 
 
     public void CopyFrom(ProductCompositionModel model)
@@ -16,5 +17,12 @@ public class ProductCompositionModel
         Description = model.Description;
         Quantity = model.Quantity;
         RawMaterialId = model.RawMaterialId;
+        RawMaterialIsDeleted = model.RawMaterialIsDeleted;
+    }
+    
+    public void ResetRawMaterialWhenDeleted()
+    {
+        RawMaterialId = null;
+        RawMaterialIsDeleted = false;
     }
 }

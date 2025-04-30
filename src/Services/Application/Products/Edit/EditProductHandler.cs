@@ -39,6 +39,7 @@ public class EditProductHandler(
         foreach (var compositionRequest in request.Compositions)
         {
             product.ChangeComposition(
+                compositionRequest.Id,
                 compositionRequest.RawMaterialId.GetValueOrDefault(),
                 compositionRequest.Description,
                 compositionRequest.Quantity.GetValueOrDefault());

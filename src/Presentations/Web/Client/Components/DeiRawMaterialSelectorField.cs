@@ -16,7 +16,7 @@ public class DeiRawMaterialSelectorField : DeiSelectorAbstractField<Guid>
     }
 
     [Inject] public required IRawMaterialViewService ViewService { get; set; }
-
+    
     protected override Func<string, Task<ChoiceOption<Guid>[]>> ItemsSearch => SearchAsync;
     protected override Func<Guid, Task<ChoiceOption<Guid>>> ItemRecover => RecoverAsync;
 
