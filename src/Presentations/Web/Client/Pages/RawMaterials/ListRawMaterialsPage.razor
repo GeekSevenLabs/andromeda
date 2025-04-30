@@ -13,49 +13,38 @@
             <MudIconButton Icon="@Icons.Material.Outlined.Add" Color="Color.Inherit" Href="/raw-materials/new"/>
         </MudTooltip>
     </GslPageHeader>
-    <GslPageSection>
+    <GslPageSection NoPaper>
         <DeiLoader @ref="_loader" Load="LoadAsync" CanRetry PreserveState>
-            @if (context.IsNotEmpty())
-            {
-                <MudTable Items="context" Hover Elevation="0" Dense >
-                    <HeaderContent>
-                        <MudTh>Nome</MudTh>
-                        <MudTh>Marca</MudTh>
-                        <MudTh>Descrição</MudTh>
-                        <MudTh>Unidade de Medida</MudTh>
-                        <MudTh>Custo da Unidade</MudTh>
-                        <MudTh Class="!tw:text-right"></MudTh>
-                    </HeaderContent>
-                    <RowTemplate Context="item">
-                        <MudTd DataLabel="Nome">@item.Name</MudTd>
-                        <MudTd DataLabel="Marca">@item.Brand</MudTd>
-                        <MudTd DataLabel="Descrição">
-                            <span class="tw:line-clamp-1">
-                                @item.Description
-                            </span>
-                        </MudTd>
-                        <MudTd DataLabel="Unidade de Medida">@item.UnitOfMeasure.ToEnumOption().CombinedName</MudTd>
-                        <MudTd DataLabel="Custo da Unidade">@item.CostPerUnit.ToCurrency()</MudTd>
-                        <MudTd Class="!tw:text-right">
-                            <MudStack Row Spacing="4">
-                                <MudTooltip Text="@($"Editar: {item.Name}")">
-                                    <MudIconButton
-                                        Icon="@Icons.Material.Outlined.Edit"
-                                        Color="Color.Primary"
-                                        Href="@($"/raw-materials/edit/{item.Id}")" />
-                                </MudTooltip>
-                                <MudTooltip Text="@($"Remover: {item.Name}")">
-                                    <MudIconButton
-                                        Icon="@Icons.Material.Outlined.Delete"
-                                        Color="Color.Error"
-                                        OnClick="() => RemoveAsync(item.Id)"/>
-                                </MudTooltip>
-                            </MudStack>
-                        </MudTd>
-                    </RowTemplate>
-                </MudTable>
-            }
-            else
+            <div class="tw:grid tw:grid-cols-1 tw:sm:grid-cols-2 tw:md:grid-cols-3 tw:gap-4">
+
+                @foreach (var raw in context)
+                {
+                    <MudCard>
+                        <MudCardContent Class="tw:flex tw:flex-col tw:gap-4">
+                            <GslDataDisplay Label="Nome">@raw.Name</GslDataDisplay>
+                            <GslDataDisplay Label="Marca">@raw.Brand</GslDataDisplay>
+                            <GslDataDisplay Label="Descrição">@raw.Description</GslDataDisplay>
+                            <GslDataDisplay Label="Medida" Text="@raw.UnitOfMeasure.ToEnumOption().CombinedName"/>
+                            <GslDataDisplay Label="Custo">@raw.CostPerUnit.ToCurrency()</GslDataDisplay>
+                        </MudCardContent>
+                        <MudCardActions>
+                            <MudButton
+                                StartIcon="@Icons.Material.Outlined.Edit"
+                                Color="Color.Primary"
+                                Href="@($"/raw-materials/edit/{raw.Id}")">
+                                Editar
+                            </MudButton>
+                            <MudButton
+                                StartIcon="@Icons.Material.Outlined.Delete"
+                                Color="Color.Error"
+                                OnClick="() => RemoveAsync(raw.Id)">
+                                Remover
+                            </MudButton>
+                        </MudCardActions>
+                    </MudCard>
+                }
+            </div>
+            @if (context.IsEmpty())
             {
                 <DeiNotFoundContent>Não há matérias primas cadastradas.</DeiNotFoundContent>
             }
@@ -63,26 +52,26 @@
     </GslPageSection>
 </GslPage>
 
-@code 
+@code
 {
     private DeiLoader<ListRawMaterialsResponseItem[]> _loader = null!;
-    
-    private async Task<ListRawMaterialsResponseItem[]> LoadAsync() 
+
+    private async Task<ListRawMaterialsResponseItem[]> LoadAsync()
         => await ViewService.ListAsync(new ListRawMaterialsRequest());
-    
+
     private async Task RemoveAsync(Guid id)
     {
         var confirm = await UiUtils.ConfirmAsync("Deseja realmente remover esta matéria prima?");
-        
+
         if (!confirm) return;
-        
+
         await ViewService
             .RemoveAsync(new RemoveRawMaterialRequest { Id = id })
             .Use(UiUtils)
             .ShowBusy("Removendo matéria prima...")
             .ShowError()
             .ShowSuccess("Matéria prima removida com sucesso!");
-        
+
         await _loader.ReloadAsync();
     }
 }

@@ -15,6 +15,8 @@
     --tw-breakpoint-2xl: 96rem;
     --tw-text-xs: 0.75rem;
     --tw-text-xs--line-height: calc(1 / 0.75);
+    --tw-font-weight-thin: 100;
+    --tw-font-weight-medium: 500;
     --tw-font-weight-bold: 700;
     --tw-default-font-family: var(--tw-font-sans);
     --tw-default-mono-font-family: var(--tw-font-mono);
@@ -277,8 +279,11 @@
   .tw\:\!px-6 {
     padding-inline: calc(var(--tw-spacing) * 6) !important;
   }
-  .tw\:px-4 {
-    padding-inline: calc(var(--tw-spacing) * 4);
+  .tw\:px-0 {
+    padding-inline: calc(var(--tw-spacing) * 0);
+  }
+  .tw\:px-2 {
+    padding-inline: calc(var(--tw-spacing) * 2);
   }
   .tw\:\!py-4 {
     padding-block: calc(var(--tw-spacing) * 4) !important;
@@ -297,8 +302,31 @@
     --tw-font-weight: var(--tw-font-weight-bold);
     font-weight: var(--tw-font-weight-bold);
   }
+  .tw\:font-medium {
+    --tw-font-weight: var(--tw-font-weight-medium);
+    font-weight: var(--tw-font-weight-medium);
+  }
+  .tw\:font-thin {
+    --tw-font-weight: var(--tw-font-weight-thin);
+    font-weight: var(--tw-font-weight-thin);
+  }
   .tw\:opacity-75 {
     opacity: 75%;
+  }
+  .tw\:sm\:grid-cols-2 {
+    @media (width >= 40rem) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .tw\:md\:grid-cols-3 {
+    @media (width >= 48rem) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .tw\:md\:grid-cols-4 {
+    @media (width >= 48rem) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
   }
 }
 @property --tw-font-weight {

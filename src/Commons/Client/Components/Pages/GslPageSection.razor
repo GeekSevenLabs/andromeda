@@ -7,8 +7,19 @@
     <MudText Typo="Typo.h4">@Label</MudText>
 }
 
-<MudPaper Elevation="2" Class="tw:!py-6 tw:!px-6">
-    <GslStack Class="@Class" Style="@Style" AdditionalAttributes="AdditionalAttributes" Gap="Gap">
-        @ChildContent
-    </GslStack>
-</MudPaper>
+@if (NoPaper)
+{
+    <div Class="tw:py-6 tw:px-2">
+        <GslStack Class="@Class" Style="@Style" AdditionalAttributes="AdditionalAttributes" Gap="Gap">
+            @ChildContent
+        </GslStack>
+    </div>
+}
+else
+{
+    <MudPaper Elevation="2" Class="tw:!py-6 tw:!px-6">
+        <GslStack Class="@Class" Style="@Style" AdditionalAttributes="AdditionalAttributes" Gap="Gap">
+            @ChildContent
+        </GslStack>
+    </MudPaper>
+}

@@ -1,0 +1,24 @@
+@inherits GslComponentBase
+
+@* ReSharper disable once CheckNamespace *@
+@namespace Andromeda
+
+<GslStack Class="@Class" Style="@Style" AdditionalAttributes="AdditionalAttributes" Gap="Gap" Direction="Direction">
+    <span class="tw:font-medium">@Label:</span>
+    <span class="tw:font-thin tw:line-clamp-1">
+        @Text
+        @ChildContent
+    </span>
+</GslStack>
+
+@code 
+{
+    private GslDirection Direction => Inline ? GslDirection.Row : GslDirection.Column;
+    
+    [Parameter, EditorRequired] public required string Label { get; set; }
+    [Parameter] public bool Inline { get; set; }
+    [Parameter] public GslGap Gap { get; set; } = GslGap.None;
+    
+    [Parameter] public string? Text { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}
