@@ -42,4 +42,11 @@ internal class EndpointService(HttpClient client) : IEndpointService
         response.EnsureSuccessStatusCode();
         return await response.Content.ReadFromJsonAsync<TResponse>() ?? throw new InvalidOperationException("Response content is null.");
     }
+
+    public async Task DeleteAsync<TRequest>(HandlerDefinition<TRequest> definition, TRequest request) where TRequest : class, IRequest
+    {
+        var route = definition.BuilderRouteRequest(request);
+        var response = await client.DeleteAsync(route);
+        response.EnsureSuccessStatusCode();
+    }
 }

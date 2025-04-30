@@ -32,6 +32,8 @@ else
     app.UseHsts();
 }
 
+app.UseExceptionHandler();
+
 app.UseHttpsRedirection();
 
 app.UseAntiforgery();

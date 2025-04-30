@@ -24,6 +24,6 @@ public class RawMaterialViewService(IEndpointService endpointService) : IRawMate
     
     public async Task RemoveAsync(RemoveRawMaterialRequest request)
     {
-        await endpointService.PostAsync(AndromedaHandlerDefinitions.RawMaterials.RemoveRawMaterial, request);
+        await endpointService.DeleteAsync(AndromedaHandlerDefinitions.RawMaterials.RemoveRawMaterial, request);
     }
 }

@@ -10,4 +10,5 @@ public interface IEndpointService
     Task<TResponse> PutAsync<TRequest, TResponse>(HandlerDefinition<TRequest, TResponse> definition, TRequest request) where TRequest : class, IRequest<TResponse> where TResponse : class;
     
     Task<TResponse> DeleteAsync<TRequest, TResponse>(HandlerDefinition<TRequest, TResponse> definition, TRequest request) where TRequest : class, IRequest<TResponse> where TResponse : class;
+    Task DeleteAsync<TRequest>(HandlerDefinition<TRequest> definition, TRequest request) where TRequest : class, IRequest;
 }
