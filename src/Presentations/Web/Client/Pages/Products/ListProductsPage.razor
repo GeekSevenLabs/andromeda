@@ -1,0 +1,81 @@
+@page "/products"
+@using Andromeda.Application.Shared.Products
+@using Andromeda.Application.Shared.Products.List
+
+@inject IProductViewService ViewService
+@inject IUiUtils UiUtils
+
+<GslPage Title="Produtos" BackHref="@BackHref">
+    <GslPageHeader>
+        <MudTooltip Text="Novo produto">
+            <MudIconButton Icon="@Icons.Material.Outlined.Add" Color="Color.Inherit" Href="/products/new"/>
+        </MudTooltip>
+    </GslPageHeader>
+    <GslPageSection>
+        <DeiLoader @ref="_loader" Load="LoadAsync" CanRetry PreserveState>
+            @if (context.IsNotEmpty())
+            {
+                <MudTable Items="context" Hover Elevation="0" Dense>
+                    <HeaderContent>
+                        <MudTh>Nome</MudTh>
+                        <MudTh>Descrição</MudTh>
+                        <MudTh>Componentes</MudTh>
+                        <MudTh Class="!tw:text-right"></MudTh>
+                    </HeaderContent>
+                    <RowTemplate Context="item">
+                        <MudTd DataLabel="Nome">@item.Name</MudTd>
+                        <MudTd DataLabel="Descrição">
+                            <span class="tw:line-clamp-1">
+                                @item.Description
+                            </span>
+                        </MudTd>
+                        <MudTd DataLabel="Componentes">@item.CompositionsCount</MudTd>
+                        <MudTd Class="!tw:text-right">
+                            <MudStack Row Spacing="4">
+                                <MudTooltip Text="@($"Editar: {item.Name}")">
+                                    <MudIconButton
+                                        Icon="@Icons.Material.Outlined.Edit"
+                                        Color="Color.Primary"
+                                        Href="@($"/products/edit/{item.Id}")"/>
+                                </MudTooltip>
+                                <MudTooltip Text="@($"Remover: {item.Name}")">
+                                    <MudIconButton
+                                        Icon="@Icons.Material.Outlined.Delete"
+                                        Color="Color.Error"
+                                        OnClick="() => RemoveAsync(item.Id)"/>
+                                </MudTooltip>
+                            </MudStack>
+                        </MudTd>
+                    </RowTemplate>
+                </MudTable>
+            }
+            else
+            {
+                <DeiNotFoundContent>Não há produtos cadastradas.</DeiNotFoundContent>
+            }
+        </DeiLoader>
+    </GslPageSection>
+</GslPage>
+
+@code
+{
+    private const string BackHref = "/";
+    private DeiLoader<ListProductsResponseItem[]> _loader = null!;
+
+    private async Task<ListProductsResponseItem[]> LoadAsync() => await ViewService.ListAsync(new ListProductsRequest());
+
+    private async Task RemoveAsync(Guid id)
+    {
+        var confirm = await UiUtils.ConfirmAsync("Deseja realmente remover este produto?");
+        if (!confirm) return;
+
+        // await ViewService
+        //     .RemoveAsync( id)
+        //     .Use(UiUtils)
+        //     .ShowBusy("Removendo matéria prima...")
+        //     .ShowError()
+        //     .ShowSuccess("Matéria prima removida com sucesso!");
+
+        await _loader.ReloadAsync();
+    }
+}

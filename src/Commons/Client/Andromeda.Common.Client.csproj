@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RootNamespace>Andromeda</RootNamespace>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <SupportedPlatform Include="browser"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.4"/>
+
+        <PackageReference Include="BlazorDevKit.Core" Version="0.61.3" />
+        <PackageReference Include="BlazorDevKit.FluentValidation" Version="0.61.3" />
+        
+        <PackageReference Include="MudBlazor" Version="8.5.1"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Application.Shared\Andromeda.Common.Application.Shared.csproj"/>
+    </ItemGroup>
+
+</Project>

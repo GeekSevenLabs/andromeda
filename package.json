@@ -1,0 +1,11 @@
+{
+  "name": "andromeda",
+  "version": "1.0.0",
+  "scripts": {
+    "tailwind": "npx @tailwindcss/cli -i src/Commons/Server/tailwindin.css -o ./src/Commons/Server/wwwroot/tailwind.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.1.0",
+    "@tailwindcss/cli" : "^4.1.0"
+  }
+}

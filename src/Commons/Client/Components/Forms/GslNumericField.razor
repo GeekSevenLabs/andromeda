@@ -1,0 +1,38 @@
+@namespace Andromeda
+
+@typeparam TValue
+@using System.Linq.Expressions
+
+@* @inherits MudNumericField<TValue> *@
+@* @{ *@
+@*     base.BuildRenderTree(__builder); *@
+@* } *@
+
+<MudNumericField 
+    T="TValue?" 
+    Immediate Culture="CultureHelper.Brazilian" Format="@FormatInternal"
+    Variant="Variant.Outlined"
+    Placeholder="@Placeholder" Label="@Label"
+    Value="Value" ValueChanged="ValueChanged" For="ValueExpression"
+    Min="@Min" Max="@Max" Step="@Step">
+    
+</MudNumericField>
+
+@code 
+{
+    private string? FormatInternal => Currency ? "N2" : Format;
+    
+    [Parameter] public bool Currency { get; set; }
+    
+    [Parameter] public string? Format { get; set; }
+    [Parameter] public string? Placeholder { get; set; }
+    [Parameter] public string? Label { get; set; }
+    
+    [Parameter] public TValue? Min { get; set; }
+    [Parameter] public TValue? Max { get; set; }
+    [Parameter] public TValue? Step { get; set; }
+    
+    [Parameter] public TValue? Value { get; set; }
+    [Parameter] public EventCallback<TValue?> ValueChanged { get; set; }
+    [Parameter] public Expression<Func<TValue>>? ValueExpression { get; set; }
+}

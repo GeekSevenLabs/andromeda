@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Commons\Application\Andromeda.Common.Application.csproj" />
+    <ProjectReference Include="..\Application.Shared\Andromeda.Application.Shared.csproj" />
+    <ProjectReference Include="..\Domain\Andromeda.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

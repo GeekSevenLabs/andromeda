@@ -1,0 +1,13 @@
+@* ReSharper disable once CheckNamespace *@
+@namespace Andromeda
+@inherits GslComponentBase
+
+<PageTitle>@Title | Andromeda</PageTitle>
+
+<CascadingValue Value="@this" IsFixed>
+    <MudContainer Class="@CssClassContainer" Style="@Style" UserAttributes="AdditionalAttributes" MaxWidth="MaxWidth">
+        <GslStack Direction="GslDirection.Column" Gap="GslGap.Medium" Class="tw:!py-4">
+            @ChildContent
+        </GslStack>
+    </MudContainer>
+</CascadingValue>

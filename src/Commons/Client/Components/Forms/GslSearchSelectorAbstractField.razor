@@ -1,0 +1,48 @@
+@* ReSharper disable once CheckNamespace *@
+@namespace Andromeda
+
+@inherits GslComponentBase
+
+@typeparam TModel where TModel : class
+@typeparam TValue where TValue : struct
+
+
+<MudAutocomplete
+    
+    T="TValue?"
+    @attributes="AdditionalAttributes"
+    Class="@Class"
+    Style="@Style"
+    
+    Value="Value"
+    ValueChanged="OnValueChanged"
+    For="ValueExpression"
+    
+    Label="@Label"
+    ShowProgressIndicator
+    
+    SearchFunc="SearchAsync"
+    ToStringFunc="GetText"
+    OnClearButtonClick="ClearAsync"
+    
+    Disabled="Disabled"
+    ReadOnly="ReadOnly"
+    Clearable="Clearable"
+    Margin="Margin.None"
+    Variant="Variant.Outlined"
+    Placeholder="@Placeholder">
+    
+    @* <NoItemsTemplate> *@
+    @*     <MudText Align="Align.Center" Class="px-4 py-1"> *@
+    @*         @if (string.IsNullOrWhiteSpace(_currentTerm)) *@
+    @*         { *@
+    @*             <MudText>Nenhum item para "@Label" encontrado</MudText> *@
+    @*         } *@
+    @*         else *@
+    @*         { *@
+    @*             <MudText>Nenhum item de "@Label" encontrado para o termo "@_currentTerm"</MudText> *@
+    @*         } *@
+    @*     </MudText> *@
+    @* </NoItemsTemplate> *@
+    
+</MudAutocomplete>

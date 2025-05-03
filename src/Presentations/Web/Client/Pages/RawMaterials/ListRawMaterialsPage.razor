@@ -1,0 +1,76 @@
+@page "/raw-materials"
+
+@using Andromeda.Application.Shared.RawMaterials
+@using Andromeda.Application.Shared.RawMaterials.List
+@using Andromeda.Application.Shared.RawMaterials.Remove
+
+@inject IRawMaterialViewService ViewService
+@inject IUiUtils UiUtils
+
+<GslPage Title="Matérias Prima" BackHref="/">
+    <GslPageHeader>
+        <MudTooltip Text="Novo item">
+            <MudIconButton Icon="@Icons.Material.Outlined.Add" Color="Color.Inherit" Href="/raw-materials/new"/>
+        </MudTooltip>
+    </GslPageHeader>
+    <GslPageSection NoPaper>
+        <DeiLoader @ref="_loader" Load="LoadAsync" CanRetry PreserveState>
+            <div class="tw:grid tw:grid-cols-1 tw:sm:grid-cols-2 tw:md:grid-cols-3 tw:gap-4">
+
+                @foreach (var raw in context)
+                {
+                    <MudCard>
+                        <MudCardContent Class="tw:flex tw:flex-col tw:gap-4">
+                            <GslDataDisplay Label="Nome">@raw.Name</GslDataDisplay>
+                            <GslDataDisplay Label="Marca">@raw.Brand</GslDataDisplay>
+                            <GslDataDisplay Label="Descrição">@raw.Description</GslDataDisplay>
+                            <GslDataDisplay Label="Medida" Text="@raw.UnitOfMeasure.ToEnumOption().CombinedName"/>
+                            <GslDataDisplay Label="Custo">@raw.CostPerUnit.ToCurrency()</GslDataDisplay>
+                        </MudCardContent>
+                        <MudCardActions>
+                            <MudButton
+                                StartIcon="@Icons.Material.Outlined.Edit"
+                                Color="Color.Primary"
+                                Href="@($"/raw-materials/edit/{raw.Id}")">
+                                Editar
+                            </MudButton>
+                            <MudButton
+                                StartIcon="@Icons.Material.Outlined.Delete"
+                                Color="Color.Error"
+                                OnClick="() => RemoveAsync(raw.Id)">
+                                Remover
+                            </MudButton>
+                        </MudCardActions>
+                    </MudCard>
+                }
+            </div>
+            @if (context.IsEmpty())
+            {
+                <DeiNotFoundContent>Não há matérias primas cadastradas.</DeiNotFoundContent>
+            }
+        </DeiLoader>
+    </GslPageSection>
+</GslPage>
+
+@code
+{
+    private DeiLoader<RawMaterialDto[]> _loader = null!;
+
+    private async Task<RawMaterialDto[]> LoadAsync() => await ViewService.ListAsync(new ListRawMaterialsRequest());
+
+    private async Task RemoveAsync(Guid id)
+    {
+        var confirm = await UiUtils.ConfirmAsync("Deseja realmente remover esta matéria prima?");
+
+        if (!confirm) return;
+
+        await ViewService
+            .RemoveAsync(new RemoveRawMaterialRequest { Id = id })
+            .Use(UiUtils)
+            .ShowBusy("Removendo matéria prima...")
+            .ShowError()
+            .ShowSuccess("Matéria prima removida com sucesso!");
+
+        await _loader.ReloadAsync();
+    }
+}
