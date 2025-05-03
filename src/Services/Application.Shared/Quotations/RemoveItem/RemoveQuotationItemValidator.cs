@@ -4,7 +4,7 @@ public class RemoveQuotationItemValidator : AbstractValidator<RemoveQuotationIte
 {
     public RemoveQuotationItemValidator()
     {
-        RuleFor(request => request.Id).NotEmpty();
-        RuleFor(request => request.ItemId).NotEmpty();
+        RuleFor(request => request.Id).NotEmpty().WithName("Orçamento");
+        RuleFor(request => request.ItemId).NotEmpty().WithName("Item do Orçamento");
     }
 }

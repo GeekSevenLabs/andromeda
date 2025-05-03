@@ -4,6 +4,6 @@ public class GetCustomerValidator : AbstractValidator<GetCustomerRequest>
 {
     public GetCustomerValidator()
     {
-        RuleFor(request => request.Id).NotEmpty();
+        RuleFor(request => request.Id).NotEmpty().WithName("Cliente");
     }
 }

@@ -4,6 +4,6 @@ public class RemoveCustomerValidator : AbstractValidator<RemoveCustomerRequest>
 {
     public RemoveCustomerValidator()
     {
-        RuleFor(request => request.Id).NotEmpty();
+        RuleFor(request => request.Id).NotEmpty().WithName("Cliente");
     }
 }

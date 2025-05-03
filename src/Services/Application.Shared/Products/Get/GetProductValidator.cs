@@ -4,6 +4,6 @@ public class GetProductValidator : AbstractValidator<GetProductRequest>
 {
     public GetProductValidator()
     {
-        RuleFor(request => request.Id).NotEmpty();
+        RuleFor(request => request.Id).NotEmpty().WithName("Produto");
     }
 }

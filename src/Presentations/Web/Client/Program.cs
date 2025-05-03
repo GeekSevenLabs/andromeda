@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
+FluentValidation.ValidatorOptions.Global.LanguageManager.Culture = CultureHelper.Brazilian;
+
 // Base Services
 builder.Services.ConfigureLoaderOptions();
 builder.Services.AddCommonClientServices(builder.HostEnvironment.BaseAddress);

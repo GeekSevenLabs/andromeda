@@ -4,6 +4,6 @@ public class GetQuotationItemValidator : AbstractValidator<GetQuotationItemReque
 {
     public GetQuotationItemValidator()
     {
-        RuleFor(request => request.Id).NotEmpty();
+        RuleFor(request => request.Id).NotEmpty().WithName("Item do Orçamento");
     }
 }
