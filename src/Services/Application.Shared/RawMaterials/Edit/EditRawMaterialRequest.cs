@@ -1,4 +1,3 @@
-using Andromeda.Application.Shared.RawMaterials.Get;
 using Andromeda.Domain.Shared;
 
 namespace Andromeda.Application.Shared.RawMaterials.Edit;
@@ -13,7 +12,7 @@ public class EditRawMaterialRequest : IRequest
     public UnitOfMeasureType? UnitOfMeasure { get; set; }
     public decimal? CostPerUnit { get; set; }
 
-    public void CopyFrom(GetRawMaterialResponse rawMaterial)
+    public void CopyFrom(RawMaterialDto rawMaterial)
     {
         Id = rawMaterial.Id;
         Name = rawMaterial.Name;

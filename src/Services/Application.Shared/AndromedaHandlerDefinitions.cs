@@ -11,6 +11,7 @@ using Andromeda.Application.Shared.Quotations.Get;
 using Andromeda.Application.Shared.Quotations.GetItem;
 using Andromeda.Application.Shared.Quotations.List;
 using Andromeda.Application.Shared.Quotations.RemoveItem;
+using Andromeda.Application.Shared.RawMaterials;
 using Andromeda.Application.Shared.RawMaterials.Edit;
 using Andromeda.Application.Shared.RawMaterials.Get;
 using Andromeda.Application.Shared.RawMaterials.List;
@@ -199,7 +200,7 @@ public static class AndromedaHandlerDefinitions
             .RequireAuthorization()
             .Build();
 
-        public static readonly HandlerDefinition<GetRawMaterialRequest, GetRawMaterialResponse> GetRawMaterial = HandlerDefinitionBuilder<GetRawMaterialRequest, GetRawMaterialResponse>
+        public static readonly HandlerDefinition<GetRawMaterialRequest, RawMaterialDto> GetRawMaterial = HandlerDefinitionBuilder<GetRawMaterialRequest, RawMaterialDto>
             .Create()
             .UseMapGet($"{Base}/{{Id:guid}}")
             .UseRouteBuilder(request => $"{Base}/{request.Id}")
@@ -210,7 +211,7 @@ public static class AndromedaHandlerDefinitions
             .RequireAuthorization()
             .Build();
         
-        public static readonly HandlerDefinition<ListRawMaterialsRequest, ListRawMaterialsResponseItem[]> ListRawMaterials = HandlerDefinitionBuilder<ListRawMaterialsRequest, ListRawMaterialsResponseItem[]>
+        public static readonly HandlerDefinition<ListRawMaterialsRequest, RawMaterialDto[]> ListRawMaterials = HandlerDefinitionBuilder<ListRawMaterialsRequest, RawMaterialDto[]>
             .Create()
             .UseMapGet(Base)
             .UseRouteBuilder(_ => Base)

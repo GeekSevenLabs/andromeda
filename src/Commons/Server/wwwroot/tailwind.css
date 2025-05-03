@@ -15,6 +15,8 @@
     --tw-breakpoint-2xl: 96rem;
     --tw-text-xs: 0.75rem;
     --tw-text-xs--line-height: calc(1 / 0.75);
+    --tw-text-sm: 0.875rem;
+    --tw-text-sm--line-height: calc(1.25 / 0.875);
     --tw-font-weight-thin: 100;
     --tw-font-weight-medium: 500;
     --tw-font-weight-bold: 700;
@@ -228,9 +230,6 @@
   .tw\:\!min-w-\[200px\] {
     min-width: 200px !important;
   }
-  .tw\:\!min-w-\[600px\] {
-    min-width: 600px !important;
-  }
   .tw\:grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
@@ -285,9 +284,6 @@
   .tw\:\!px-6 {
     padding-inline: calc(var(--tw-spacing) * 6) !important;
   }
-  .tw\:px-0 {
-    padding-inline: calc(var(--tw-spacing) * 0);
-  }
   .tw\:px-2 {
     padding-inline: calc(var(--tw-spacing) * 2);
   }
@@ -337,11 +333,6 @@
   .tw\:md\:grid-cols-3 {
     @media (width >= 48rem) {
       grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-  .tw\:md\:grid-cols-4 {
-    @media (width >= 48rem) {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
 }

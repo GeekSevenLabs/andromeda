@@ -12,12 +12,12 @@ public class RawMaterialViewService(IEndpointService endpointService) : IRawMate
         await endpointService.PostAsync(AndromedaHandlerDefinitions.RawMaterials.EditRawMaterial, request);
     }
 
-    public async Task<GetRawMaterialResponse> GetAsync(GetRawMaterialRequest request)
+    public async Task<RawMaterialDto> GetAsync(GetRawMaterialRequest request)
     {
         return await endpointService.GetAsync(AndromedaHandlerDefinitions.RawMaterials.GetRawMaterial, request);
     }
 
-    public async Task<ListRawMaterialsResponseItem[]> ListAsync(ListRawMaterialsRequest request)
+    public async Task<RawMaterialDto[]> ListAsync(ListRawMaterialsRequest request)
     {
         return await endpointService.GetAsync(AndromedaHandlerDefinitions.RawMaterials.ListRawMaterials, request);
     }

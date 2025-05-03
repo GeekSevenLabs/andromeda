@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Components;
 // ReSharper disable once CheckNamespace
 namespace Andromeda;
 
-public class DeiRawMaterialSelectorField : DeiSelectorAbstractField<Guid>
+public class DeiRawMaterialSelectorField : GslSearchSelectorAbstractField<RawMaterialDto, Guid>
 {
     public DeiRawMaterialSelectorField()
     {
@@ -16,23 +16,20 @@ public class DeiRawMaterialSelectorField : DeiSelectorAbstractField<Guid>
     }
 
     [Inject] public required IRawMaterialViewService ViewService { get; set; }
-    
-    protected override Func<string, Task<ChoiceOption<Guid>[]>> ItemsSearch => SearchAsync;
-    protected override Func<Guid, Task<ChoiceOption<Guid>>> ItemRecover => RecoverAsync;
 
-    private async Task<ChoiceOption<Guid>> RecoverAsync(Guid id)
+    protected override Func<string, Task<RawMaterialDto[]>> Search => SearchAsync;
+    protected override Func<Guid, Task<RawMaterialDto>> Recover => RecoverAsync;
+    protected override Func<RawMaterialDto, string> ToText => raw => raw.ToString();
+    protected override Func<RawMaterialDto, Guid> ToValue => raw => raw.Id;
+
+    private async Task<RawMaterialDto> RecoverAsync(Guid id)
     {
-        var rawMaterial = await ViewService.GetAsync(new GetRawMaterialRequest { Id = id });
-        return new ChoiceOption<Guid>(id, rawMaterial.Name);
+        return await ViewService.GetAsync(new GetRawMaterialRequest { Id = id });
     }
 
-    private async Task<ChoiceOption<Guid>[]> SearchAsync(string term)
+    private async Task<RawMaterialDto[]> SearchAsync(string term)
     {
         var request = new ListRawMaterialsRequest { Term = term };
-        var rawMaterials = await ViewService.ListAsync(request);
-
-        return rawMaterials
-            .Select(rm => new ChoiceOption<Guid>(rm.Id, rm.Name))
-            .ToArray();
+        return await ViewService.ListAsync(request);
     }
 }

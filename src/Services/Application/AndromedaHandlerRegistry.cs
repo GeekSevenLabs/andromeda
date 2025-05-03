@@ -29,6 +29,7 @@ using Andromeda.Application.Shared.Quotations.Get;
 using Andromeda.Application.Shared.Quotations.GetItem;
 using Andromeda.Application.Shared.Quotations.List;
 using Andromeda.Application.Shared.Quotations.RemoveItem;
+using Andromeda.Application.Shared.RawMaterials;
 using Andromeda.Application.Shared.RawMaterials.Edit;
 using Andromeda.Application.Shared.RawMaterials.Get;
 using Andromeda.Application.Shared.RawMaterials.List;
@@ -44,8 +45,8 @@ public static class AndromedaHandlerRegistry
     {
         registry
             .Register<EditRawMaterialHandler, EditRawMaterialRequest>(AHD.RawMaterials.EditRawMaterial)
-            .Register<GetRawMaterialHandler, GetRawMaterialRequest, GetRawMaterialResponse>(AHD.RawMaterials.GetRawMaterial)
-            .Register<ListRawMaterialsHandler, ListRawMaterialsRequest, ListRawMaterialsResponseItem[]>(AHD.RawMaterials.ListRawMaterials)
+            .Register<GetRawMaterialHandler, GetRawMaterialRequest, RawMaterialDto>(AHD.RawMaterials.GetRawMaterial)
+            .Register<ListRawMaterialsHandler, ListRawMaterialsRequest, RawMaterialDto[]>(AHD.RawMaterials.ListRawMaterials)
             .Register<RemoveRawMaterialHandler, RemoveRawMaterialRequest>(AHD.RawMaterials.RemoveRawMaterial)
             
             .Register<EditProductHandler, EditProductRequest>(AHD.Products.EditProduct)

@@ -11,8 +11,8 @@ using Andromeda.Application.Shared.Quotations.Get;
 using Andromeda.Application.Shared.Quotations.GetItem;
 using Andromeda.Application.Shared.Quotations.List;
 using Andromeda.Application.Shared.Quotations.RemoveItem;
+using Andromeda.Application.Shared.RawMaterials;
 using Andromeda.Application.Shared.RawMaterials.Edit;
-using Andromeda.Application.Shared.RawMaterials.Get;
 using Andromeda.Application.Shared.RawMaterials.List;
 
 namespace Andromeda.Application.Shared;
@@ -20,9 +20,8 @@ namespace Andromeda.Application.Shared;
 [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
 
 [JsonSerializable(typeof(EditRawMaterialRequest))]
-[JsonSerializable(typeof(GetRawMaterialResponse))]
 [JsonSerializable(typeof(ListRawMaterialsRequest))]
-[JsonSerializable(typeof(ListRawMaterialsResponseItem[]))]
+[JsonSerializable(typeof(RawMaterialDto[]))]
 [JsonSerializable(typeof(ValueRequest<Guid>))]
 
 [JsonSerializable(typeof(EditProductRequest))]

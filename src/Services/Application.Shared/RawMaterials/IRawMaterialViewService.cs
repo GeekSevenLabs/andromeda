@@ -8,7 +8,7 @@ namespace Andromeda.Application.Shared.RawMaterials;
 public interface IRawMaterialViewService
 {
     Task EditAsync(EditRawMaterialRequest request);
-    Task<GetRawMaterialResponse> GetAsync(GetRawMaterialRequest request);
-    Task<ListRawMaterialsResponseItem[]> ListAsync(ListRawMaterialsRequest request);
+    Task<RawMaterialDto> GetAsync(GetRawMaterialRequest request);
+    Task<RawMaterialDto[]> ListAsync(ListRawMaterialsRequest request);
     Task RemoveAsync(RemoveRawMaterialRequest request);
 }

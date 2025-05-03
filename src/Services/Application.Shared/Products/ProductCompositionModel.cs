@@ -22,6 +22,7 @@ public class ProductCompositionModel
     
     public void ResetRawMaterialWhenDeleted()
     {
+        if (!RawMaterialIsDeleted) return;
         RawMaterialId = null;
         RawMaterialIsDeleted = false;
     }

@@ -1,6 +1,5 @@
 using Andromeda.Application.RawMaterials;
-using Andromeda.Application.Shared.RawMaterials.Get;
-using Andromeda.Application.Shared.RawMaterials.List;
+using Andromeda.Application.Shared.RawMaterials;
 using Andromeda.Domain.RawMaterials;
 using Andromeda.Infrastructure.Contexts;
 
@@ -10,7 +9,7 @@ internal class RawMaterialQueries(AndromedaDbContext db) : IRawMaterialQueries
 {
     public IQueryable<RawMaterial> Queryable() => db.RawMaterials.AsNoTracking().AsQueryable();
 
-    public async Task<ListRawMaterialsResponseItem[]> ListAsync(string? term)
+    public async Task<RawMaterialDto[]> ListAsync(string? term)
     {
         var query = db.RawMaterials
             .AsNoTracking();
@@ -22,24 +21,25 @@ internal class RawMaterialQueries(AndromedaDbContext db) : IRawMaterialQueries
 
         return await query
             .Where(raw => raw.IsDeleted == false)
-            .Select(rm => new ListRawMaterialsResponseItem
+            .Select(rm => new RawMaterialDto
             {
                 Id = rm.Id,
                 Name = rm.Name,
                 Brand = rm.Brand,
                 Description = rm.Description,
                 UnitOfMeasure = rm.UnitOfMeasure,
-                CostPerUnit = rm.CostPerUnit
+                CostPerUnit = rm.CostPerUnit,
+                IsDeleted = rm.IsDeleted
             })
             .ToArrayAsync();
     }
 
-    public Task<GetRawMaterialResponse?> GetAsync(Guid id)
+    public Task<RawMaterialDto?> GetAsync(Guid id)
     {
         return db.RawMaterials
             .AsNoTracking()
             .Where(rm => rm.Id == id)
-            .Select(rm => new GetRawMaterialResponse
+            .Select(rm => new RawMaterialDto
             {
                 Id = rm.Id,
                 Name = rm.Name,

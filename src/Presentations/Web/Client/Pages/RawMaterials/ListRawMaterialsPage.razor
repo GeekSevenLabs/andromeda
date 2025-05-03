@@ -54,10 +54,9 @@
 
 @code
 {
-    private DeiLoader<ListRawMaterialsResponseItem[]> _loader = null!;
+    private DeiLoader<RawMaterialDto[]> _loader = null!;
 
-    private async Task<ListRawMaterialsResponseItem[]> LoadAsync()
-        => await ViewService.ListAsync(new ListRawMaterialsRequest());
+    private async Task<RawMaterialDto[]> LoadAsync() => await ViewService.ListAsync(new ListRawMaterialsRequest());
 
     private async Task RemoveAsync(Guid id)
     {
