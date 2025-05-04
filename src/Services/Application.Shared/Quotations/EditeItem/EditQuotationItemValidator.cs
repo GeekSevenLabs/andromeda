@@ -4,10 +4,10 @@ public class EditQuotationItemValidator : AbstractValidator<EditQuotationItemReq
 {
     public EditQuotationItemValidator()
     {
-        RuleFor(request => request.Id).NotEmpty();
+        RuleFor(request => request.Id).NotEmpty().WithName("Composição");
         
-        RuleFor(request => request.Quantity).NotEmpty().GreaterThan(0);
-        RuleFor(request => request.ProductId).NotEmpty();
-        RuleFor(request => request.Description).NotEmpty().MaximumLength(500);
+        RuleFor(request => request.Quantity).NotEmpty().GreaterThan(0).WithName("Quantidade");
+        RuleFor(request => request.ProductId).NotEmpty().WithName("Produto");
+        RuleFor(request => request.Description).NotEmpty().MaximumLength(500).WithName("Descrição");
     }
 }

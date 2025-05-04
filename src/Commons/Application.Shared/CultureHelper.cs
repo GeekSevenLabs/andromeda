@@ -4,5 +4,5 @@ namespace Andromeda;
 
 public static class CultureHelper
 {
-    public static CultureInfo Brazilian { get; private set; } = new ("pt-BR"); 
+    public static readonly CultureInfo Brazilian = new ("pt-BR"); 
 }

@@ -1,3 +1,4 @@
+using Andromeda;
 using Andromeda.Extensions;
 using Andromeda.IoC;
 using Andromeda.Presentation.Web.Components;
@@ -5,6 +6,8 @@ using Andromeda.Presentation.Web.Extensions;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+FluentValidation.ValidatorOptions.Global.LanguageManager.Culture = CultureHelper.Brazilian;
 
 // Add services to the container.
 builder.Services

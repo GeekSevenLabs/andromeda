@@ -4,6 +4,6 @@ public class RemoveRawMaterialValidator : AbstractValidator<RemoveRawMaterialReq
 {
     public RemoveRawMaterialValidator()
     {
-        RuleFor(request => request.Id).NotEmpty();
+        RuleFor(request => request.Id).NotEmpty().WithName("Matéria-prima");
     }
 }
